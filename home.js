@@ -1,2 +1,2 @@
-console.log("Hello")
-alert("Alert!!")
+// console.log("Hello")
+// alert("Alert!!")
