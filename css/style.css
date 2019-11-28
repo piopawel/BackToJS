@@ -3,6 +3,7 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 #challenge-1{
@@ -23,10 +24,10 @@
     padding: 10px 30px 10px 30px;
 }
 
-#click-me {
+#calculate-days {
     background: rgb(0, 119, 255);
 }
-#click-me:hover{
+#calculate-days:hover{
     background: rgb(0, 152, 255);
 }
 

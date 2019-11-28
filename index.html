@@ -12,11 +12,18 @@
         <div id="challenge-1" class="challenge">
             <h2>Challenge 1: Your age in days:</h2>
             <div class="flex-box-container">
-                <button class="button" id="click-me">Click me</button>
-                <button class="button" id="reset">reset</button>
+                <!-- <form onsubmit="ageInDays()"> -->
+                    <div>
+                            Birthday: <input type="date" name="bday" id="input-bday">
+                            <input type="submit" value="Check" class="button" id="calculate-days" onclick="ageInDays()">
+                    </div>
+                        
+                <!-- </form> -->
+                <!-- <button class="button" id="calculate-days" onclick="ageInDays()">Click me</button> -->
+                <button class="button" id="reset" onclick="resetDays()">reset</button>
             </div>
             <div class="flex-box-container">
-                <div class="flex-box-result"></div>
+                <div id="flex-box-result"></div>
             </div>
         </div>  
         <div  id="challenge-2" class="challenge">
