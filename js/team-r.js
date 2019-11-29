@@ -10,6 +10,15 @@ function teamRSpeaks(){
     speakingContainer = document.getElementById("speaking-container");
     createSpeech(speakingContainer, "Te dwie niecnoty", 1, 1);
     createSpeech(speakingContainer, "To kłopoty", 2, 3);
+    createSpeech(speakingContainer, "By uchronić świat od dewastacji!", 3, 1);
+    createSpeech(speakingContainer, "By zjednoczyć wszystkie ludy naszej nacji!", 4, 3);
+    createSpeech(speakingContainer, "Miłości i prawdzie nie przyznać racji!", 5, 1);
+    createSpeech(speakingContainer, "By gwiazd dosięgnąć będziemy walczyć!", 6, 3);
+    createSpeech(speakingContainer, "JESSIE", 7, 1);
+    createSpeech(speakingContainer, "JAMES", 8, 3);
+    createSpeech(speakingContainer, "Zespół R walczy w służbie zła!", 9, 1);
+    createSpeech(speakingContainer, "Więc poddaj się lub do walki stań!", 10, 3);
+    createSpeech(speakingContainer, "Meowth to fakt!", 11, 2);
 }
 
 function teamREnd(){

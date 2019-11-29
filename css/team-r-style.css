@@ -9,5 +9,21 @@
 }
 
 .team-r-speech{
-    
+    border-radius: 5px;
+    /* width: 150px; */
+    color:white;
+    padding: 10px 30px 10px 30px;
+    margin: 10px 10px 0 10px;
+    background: lightseagreen; 
+}
+
+.team-r-speech:after{
+    content: ' ';
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 12px solid;
+    bottom: -40px;
+    left: -10px;
+    border-color: lightseagreen transparent transparent transparent;
 }
