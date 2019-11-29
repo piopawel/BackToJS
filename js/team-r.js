@@ -1,9 +1,9 @@
 function teamRStart(){
     var teamRContainer = document.getElementById("team-r-container")
     if (teamRContainer.childElementCount == 0) {
-        var jessie = createImage("../img/jessie.jpg");
-        var james = createImage("../img/james.png");
-        var meowth = createImage("../img/meowth.jpg");
+        var jessie = createImage("../img/jessie.jpg", "jessie");
+        var james = createImage("../img/james.png", "james");
+        var meowth = createImage("../img/meowth.jpg", "meowth");
         teamRContainer.append(jessie, meowth, james);
     }
 }
@@ -34,20 +34,34 @@ async function teamRSpeaks(){
 }
 
 function teamREnd(){
+    var teamRContainer = document.getElementById("team-r-container")
+    for (i=0; i<teamRContainer.childElementCount; i++){
+        teamRContainer.childNodes[i].classList.add("img-team-r-shrinked")
+        if (teamRContainer.childNodes[i].id == "jessie"){
+            teamRContainer.childNodes[i].style.left = "30%";
+        } 
+        if (teamRContainer.childNodes[i].id == "james"){
+            teamRContainer.childNodes[i].style.left = "-30%";
+        } 
+    }
+    teamRContainer.classList.add("shrinked-container")
 
+    //TODO: dekete the elements
 }
 
-function createImage(path){
+function createImage(path, name){
     var img = document.createElement("img");
     img.src = path;
-    img.classList.add("img-team-r")
-    return img
+    img.classList.add("img-team-r");
+    img.setAttribute("id", name);
+    return img;
 }
 
 function createSpeech(parent, text, row, col){
     paragraph = document.createElement("p");
     paragraph.appendChild(document.createTextNode(text));
     paragraph.setAttribute("style", "grid-column: " + col + " / span 1; \n grid-row: " + row + " / span 1;" );
+    // paragraph.style.grid-column = col + " / span 1; \n grid-row: " + row + " / span 1"; Not possible with a dash??
     paragraph.classList.add("team-r-speech");
     // paragraph.style.bottom = "-500px";
     // paragraph.classList.add("position-0");
