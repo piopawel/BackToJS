@@ -1,0 +1,13 @@
+.img-team-r{
+    width: 150px;
+    height: auto;
+}
+
+#speaking-container{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.team-r-speech{
+    
+}
