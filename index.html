@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="./team-r.html">Meet team rocket!</a>
     <div class="main">
         <div id="challenge-1" class="challenge">
             <h2>Challenge 1: Your age in days:</h2>
@@ -15,19 +16,24 @@
                 <!-- <form onsubmit="ageInDays()"> -->
                     <div>
                             Birthday: <input type="date" name="bday" id="input-bday">
-                            <input type="submit" value="Check" class="button" id="calculate-days" onclick="ageInDays()">
+                            <input type="submit" value="Check" class="button run-fn" id="calculate-days" onclick="ageInDays()">
                     </div>
                         
-                <!-- </form> -->
-                <!-- <button class="button" id="calculate-days" onclick="ageInDays()">Click me</button> -->
-                <button class="button" id="reset" onclick="resetDays()">reset</button>
+                <button class="button alert" id="reset" onclick="resetDays()">reset</button>
             </div>
             <div class="flex-box-container">
                 <div id="flex-box-result"></div>
             </div>
         </div>  
         <div  id="challenge-2" class="challenge">
-                <h2>Challenge 2: Cat generator</h2>
+            <h2>Challenge 2: Cat generator</h2>
+            <div>
+                <button class="button run-fn" id="btn-cat-gen" onclick="generateCat()">Generate a cat :) </button>
+                <button class="button alert" id="btn-cat-rem" onclick="removeCat()">Remove a cat :(</button>
+                <button class="button alert" id="btn-all-rem" onclick="removeAllCats()">Remove all cats :( :( :( </button>
+            </div>
+            
+            <div class="flex-box-container" id="cat-container"></div>
         </div>
         <div  id="challenge-3" class="challenge">
                 <h2>Challenge 3: ?</h2>
@@ -41,6 +47,7 @@
     </div>
 
 
-    <script src="home.js"></script>
+    <script src="./js/challenge1.js"></script>
+    <script src="./js/challenge2.js"></script>
 </body>
 </html>
