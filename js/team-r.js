@@ -1,9 +1,11 @@
 function teamRStart(){
     var teamRContainer = document.getElementById("team-r-container")
-    var jessie = createImage("../img/jessie.jpg");
-    var james = createImage("../img/james.png");
-    var meowth = createImage("../img/meowth.jpg");
-    teamRContainer.append(jessie, meowth, james);
+    if (teamRContainer.childElementCount == 0) {
+        var jessie = createImage("../img/jessie.jpg");
+        var james = createImage("../img/james.png");
+        var meowth = createImage("../img/meowth.jpg");
+        teamRContainer.append(jessie, meowth, james);
+    }
 }
 
 async function teamRSpeaks(){
@@ -44,10 +46,15 @@ function createImage(path){
 
 function createSpeech(parent, text, row, col){
     paragraph = document.createElement("p");
-    paragraph.classList.add("team-r-speech");
     paragraph.appendChild(document.createTextNode(text));
     paragraph.setAttribute("style", "grid-column: " + col + " / span 1; \n grid-row: " + row + " / span 1;" );
+    paragraph.classList.add("team-r-speech");
+    // paragraph.style.bottom = "-500px";
+    // paragraph.classList.add("position-0");
     parent.appendChild(paragraph);
+    // paragraph.style.transition = "bottom 2s linear"
+    // paragraph.style.bottom = "0px";
+    // paragraph.classList.remove("position-0");
 }
 
 function sleep(ms) {
