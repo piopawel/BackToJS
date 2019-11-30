@@ -33,7 +33,7 @@ async function teamRSpeaks(){
     createSpeech(speakingContainer, "Meowth to fakt!", 11, 2);
 }
 
-function teamREnd(){
+async function teamREnd(){
     var teamRContainer = document.getElementById("team-r-container")
     for (i=0; i<teamRContainer.childElementCount; i++){
         teamRContainer.childNodes[i].classList.add("img-team-r-shrinked")
@@ -44,9 +44,18 @@ function teamREnd(){
             teamRContainer.childNodes[i].style.left = "-30%";
         } 
     }
-    teamRContainer.classList.add("shrinked-container")
-
-    //TODO: dekete the elements
+    teamRContainer.classList.add("shrinked-container");
+    // after 3s, remove the children and add a star element
+    await sleep(3000);
+    for (i=0; i<teamRContainer.childElementCount; i++){
+        teamRContainer.removeChild(teamRContainer.lastChild);
+    }
+    star = document.createElement("img");
+    star.id = "team-r-star";
+    star.src = "../img/star.png";
+    teamRContainer.appendChild(star);
+    await sleep(2000);
+    teamRContainer.removeChild(teamRContainer.lastChild);
 }
 
 function createImage(path, name){

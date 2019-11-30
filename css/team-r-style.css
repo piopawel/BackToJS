@@ -52,6 +52,11 @@
     border-color: lightseagreen transparent transparent transparent;
 }
 
+#team-r-star{
+    animation: star-effect 2s linear;
+    width: 0;
+}
+
 @keyframes chat-apparance{
     0%{bottom: -500px;}
     100%{bottom: 0px;}
@@ -60,3 +65,16 @@
 @keyframes spin {
     100% { transform:rotate(2880deg);} }
 
+@keyframes star-effect{
+    0%{transform: rotate(36deg); width: 50px;}
+    10%{transform: rotate(72deg); width: 60px;}
+    20%{transform: rotate(108deg); width: 75px;}
+    30%{transform: rotate(144deg); width: 65px;}
+    40%{transform: rotate(180deg); width: 55px;}
+    50%{transform: rotate(216deg); width: 45px;}
+    60%{transform: rotate(252deg); width: 35px;}
+    70%{transform: rotate(288deg); width: 25px;}
+    80%{transform: rotate(324deg); width: 15px;}
+    90%{transform: rotate(360deg); width: 5px;}
+    100%{transform: rotate(360deg); width: 0px;}
+}
