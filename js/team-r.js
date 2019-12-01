@@ -47,7 +47,9 @@ async function teamREnd(){
     teamRContainer.classList.add("shrinked-container");
     // after 3s, remove the children and add a star element
     await sleep(3000);
-    for (i=0; i<teamRContainer.childElementCount; i++){
+    var elements = teamRContainer.childElementCount;
+    // so it checks in JS every time it runs into the for loop
+    for (i=0; i<elements; i++){
         teamRContainer.removeChild(teamRContainer.lastChild);
     }
     star = document.createElement("img");
@@ -56,6 +58,7 @@ async function teamREnd(){
     teamRContainer.appendChild(star);
     await sleep(2000);
     teamRContainer.removeChild(teamRContainer.lastChild);
+    teamRContainer.classList.remove("shrinked-container")
 }
 
 function createImage(path, name){
