@@ -84,6 +84,29 @@
     height: 150px;
 } */
 
+#bj-row-1, #bj-row-2{
+    background: url("https://img.freepik.com/free-photo/green-poker-background_87414-2508.jpg?size=626&ext=jpg") center;
+    color: #ffffff;
+}
+#bj-row-1 div{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    height: 300px;
+    width: 45%;
+    overflow: auto;
+}
+
+#bj-row-1 img{
+    width: 50px;
+    padding: 10px;
+}
+
+table, td{
+    border: 1px solid black;
+    border-spacing: 0px;
+}
+
 @keyframes cat-creation{
     0%{opacity: 0;}
     100%{opacity: 1;}
