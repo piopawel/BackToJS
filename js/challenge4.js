@@ -1,4 +1,5 @@
 var allButtons = document.getElementsByClassName("button");
+// TODO: this should be rerun everytime the chalenge 3 function is done - there is one more button then!
 var buttonsClasses = [];
 for (let i=0; i<allButtons.length; i++){
     buttonsClasses.push(allButtons[i].classList[1]);
