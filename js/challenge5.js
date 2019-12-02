@@ -24,6 +24,10 @@ function bjDeal(){
     for (let i=0; i<botImages.length; i++){
         botImages[i].remove();
     }
+    bjGame['player']['score'] = 0;
+    bjGame['bot']['score'] = 0;
+    showScore('player');
+    showScore('bot');
 }
 
 function showCard(activePlayer, card){
@@ -38,6 +42,20 @@ function randomCard(){
 }
 
 function updateScore(activePlayer, card){
-    bjGame[activePlayer]['score'] += bjGame['cardsMap'][card];
-    document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).innerHTML = `Player: ${bjGame[activePlayer]['score']}`;
+    // if adding 11 keeps the score below 21 add 11, otherwise add 1
+    if (card == "A"){
+        if (bjGame[activePlayer]['score'] + bjGame["cardsMap"][card][1] <= 21){
+            bjGame[activePlayer]['score'] += bjGame["cardsMap"][card][1];
+        } else {
+            bjGame[activePlayer]['score'] += bjGame["cardsMap"][card][0];
+        }
+
+    } else {
+        bjGame[activePlayer]['score'] += bjGame['cardsMap'][card];
+    }
+    showScore(activePlayer);
+}
+
+function showScore(activePlayer){
+    document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).innerHTML = `${activePlayer.charAt(0).toUpperCase() + activePlayer.slice(1)}: ${bjGame[activePlayer]['score']}`;
 }
