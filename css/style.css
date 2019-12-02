@@ -58,7 +58,7 @@
     /* transform:{rotate: 3600deg;} */
 }
 
-#rps-container img:hover{
+#rps-container .choice-box img:hover{
     box-shadow: 0px 10px 50px rgba(37, 50, 233, 1);
 }
 
@@ -66,10 +66,10 @@
     width: 150px;
     height: 150px;
 }
-#rps-container div{
+/* #rps-container div{
     width: 150px;
     height: 150px;
-}
+} */
 
 @keyframes cat-creation{
     0%{opacity: 0;}

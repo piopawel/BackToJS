@@ -12,7 +12,7 @@ function rpsGame(choiceDiv){
         results = decideWinner(humanChoice, botChoice); //<-1, 0, 1> -> Computer, Tie, Human won
         message = finalMessage(results); // object(dict in python) {message: "", color: ""}
         rpsFrontend(humanChoice, botChoice, message);
-    } else {
+    } else if (choiceDiv.getElementsByTagName("p").length > 0) {
         loadImages();
     }
 }
@@ -55,8 +55,10 @@ function rpsFrontend(humanChoice, botChoice, message){
     // add new elements to the divs
     imgDiv1 = document.createElement("img");
     imgDiv1.src = imageDb[humanChoice];
+    imgDiv1.style = "box-shadow: 0px 10px 50px rgba(37, 50, 233, 1);"
     imgDiv3 = document.createElement("img");
     imgDiv3.src = imageDb[botChoice];
+    imgDiv3.style = "box-shadow: 0px 10px 50px rgba(233, 50, 37, 1);"
 
     messageText = document.createElement("h2");
     messageText.innerHTML = message["message"];
