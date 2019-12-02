@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="loadImages()">
     <a href="./team-r.html">Meet team rocket!</a>
     <div class="main">
         <div id="challenge-1" class="challenge">
@@ -38,9 +38,12 @@
         <div  id="challenge-3" class="challenge">
                 <h2>Challenge 3: Rock, paper, scissors</h2>
                 <div class="flex-box-container" id="rps-container">
-                    <img src="./img/rock.png" id="rock" alt="rock" height=150px width=150px onclick="rpsGame(this)">
-                    <img src="./img/paper.jpg" id="paper" alt="paper" height=150px width=150px onclick="rpsGame(this)">
-                    <img src="./img/scissors.png" id="scissors" alt="scissors" height=150px width=150px onclick="rpsGame(this)">
+                    <div id="rps-div-1" onclick="rpsGame(this)"></div>
+                    <div id="rps-div-2" onclick="rpsGame(this)"></div>
+                    <div id="rps-div-3" onclick="rpsGame(this)"></div>
+                    <!-- <img src="./img/rock.png" id="rock" alt="rock" height=150px width=150px onclick="rpsGame(this)"> -->
+                    <!-- <img src="./img/paper.jpg" id="paper" alt="paper" height=150px width=150px onclick="rpsGame(this)"> -->
+                    <!-- <img src="./img/scissors.png" id="scissors" alt="scissors" height=150px width=150px onclick="rpsGame(this)"> -->
                 </div>
         </div>
         <div  id="challenge-4" class="challenge">
@@ -54,5 +57,6 @@
 
     <script src="./js/challenge1.js"></script>
     <script src="./js/challenge2.js"></script>
+    <script src="./js/challenge3.js"></script>
 </body>
 </html>
