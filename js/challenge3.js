@@ -12,7 +12,7 @@ function rpsGame(choiceDiv){
         results = decideWinner(humanChoice, botChoice); //<-1, 0, 1> -> Computer, Tie, Human won
         message = finalMessage(results); // object(dict in python) {message: "", color: ""}
         rpsFrontend(humanChoice, botChoice, message);
-    } else if (choiceDiv.getElementsByTagName("p").length > 0) {
+    } else if (choiceDiv.getElementsByTagName("button").length > 0) {
         loadImages();
     }
 }
@@ -63,7 +63,7 @@ function rpsFrontend(humanChoice, botChoice, message){
     messageText = document.createElement("h2");
     messageText.innerHTML = message["message"];
     messageText.style.color = message["color"];
-    returnButton = document.createElement("p");
+    returnButton = document.createElement("button");
     returnButton.innerHTML = "Play once again";
     returnButton.classList.add("button", "run-fn");
     returnButton.id = "rps-return"
