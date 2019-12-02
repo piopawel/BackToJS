@@ -31,10 +31,12 @@ function bjDeal(){
 }
 
 function showCard(activePlayer, card){
-    let cardImage = document.createElement("img");
-    cardImage.src = `../img/blackjack/${card}.png`;
-    document.querySelector("#" + bjGame[activePlayer]['div']).appendChild(cardImage);
-    hitSound.play();
+    if (bjGame[activePlayer]['score'] < 21 ){
+        let cardImage = document.createElement("img");
+        cardImage.src = `../img/blackjack/${card}.png`;
+        document.querySelector("#" + bjGame[activePlayer]['div']).appendChild(cardImage);
+        hitSound.play();
+    }
 }
 
 function randomCard(){
@@ -57,5 +59,13 @@ function updateScore(activePlayer, card){
 }
 
 function showScore(activePlayer){
-    document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).innerHTML = `${activePlayer.charAt(0).toUpperCase() + activePlayer.slice(1)}: ${bjGame[activePlayer]['score']}`;
+    if (bjGame[activePlayer]['score'] > 21){
+        document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).textContent = 
+            `${activePlayer.charAt(0).toUpperCase() + activePlayer.slice(1)}: BUSTED!`;
+        document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).style.color = "red";
+    } else {
+        document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).innerHTML = 
+            `${activePlayer.charAt(0).toUpperCase() + activePlayer.slice(1)}: ${bjGame[activePlayer]['score']}`;
+            document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).style.color = "white";
+    }
 }
