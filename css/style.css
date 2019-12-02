@@ -39,6 +39,19 @@
     background: rgb(255, 40, 0);
 }
 
+.btn-success{
+    background: rgb(6, 85, 39);
+}
+.btn-success:hover{
+    background: rgb(5, 117, 5);
+}
+.btn-warn{
+    background: rgb(255, 125, 4);
+}
+.btn-warn:hover{
+    background: rgb(255, 145, 4);
+}
+
 .img-cat{
     width: 200px;
     height: 100px;
