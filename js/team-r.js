@@ -49,6 +49,7 @@ async function teamREnd(){
     await sleep(3000);
     var elements = teamRContainer.childElementCount;
     // so it checks in JS every time it runs into the for loop
+    // Is it because it is an async func?
     for (i=0; i<elements; i++){
         teamRContainer.removeChild(teamRContainer.lastChild);
     }
