@@ -1,4 +1,5 @@
 document.querySelector('#bj-hit-btn').addEventListener('click', bjHit);
+document.querySelector('#bj-stand-btn').addEventListener('click', bjBotHit);
 document.querySelector('#bj-deal-btn').addEventListener('click', bjDeal);
 
 let bjGame = {
@@ -8,11 +9,18 @@ let bjGame = {
     "cardsMap": {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10":10, "J": 10, "Q": 10, "K": 10, "A": [1, 11]},
 }
 const hitSound = new Audio("../sounds/swish.m4a");
+hitSound.volume = 0.1;
 
 function bjHit(){
     let card = randomCard();
     showCard("player", card);
     updateScore("player", card);
+}
+
+function bjBotHit(){
+    let card = randomCard();
+    showCard("bot", card);
+    updateScore("bot", card);
 }
 
 function bjDeal(){
