@@ -7,6 +7,9 @@ let bjGame = {
     "bot":{"scoreSpan": "bj-bot-result", "div": "bot-box", "score": 0},
     "cards": ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"],
     "cardsMap": {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10":10, "J": 10, "Q": 10, "K": 10, "A": [1, 11]},
+    "wins": 0,
+    "draws": 0,
+    "losses": 0,
 }
 const hitSound = new Audio("../sounds/swish.m4a");
 const winSound = new Audio("../sounds/cash.mp3");
@@ -16,11 +19,14 @@ winSound.volume = 0.1;
 lossSound.volume = 0.1;
 
 function bjHit(){
-    let card = randomCard();
-    showCard("player", card);
-    updateScore("player", card);
-    if (bjGame['player']['score'] > 21) {
-        showResult("bot");
+    if(bjGame['bot']['score'] == 0){ // only play when the Bot has not started yet
+        let card = randomCard();
+        showCard("player", card);
+        updateScore("player", card);
+        if (bjGame['player']['score'] > 21) {
+            // showResult("bot");
+            computeWinner();
+        }
     }
 }
 
@@ -99,22 +105,26 @@ function computeWinner(){
         if (bjGame['player']['score'] > bjGame['bot']['score'] || bjGame['bot']['score'] > 21){
             // Player win
             winner = 'player';
-
+            bjGame['wins']++;
         } else if (bjGame['player']['score'] < bjGame['bot']['score']){
             // Player lose
             winner = 'bot'
+            bjGame['losses']++;
         } else {
             // TIE
             winner = null;
+            bjGame['draws']++;
         }
     } else {
         // You bust, does the computer too?
         if (bjGame['bot']['score'] <= 21){
             // Player lose
             winner = "bot";
+            bjGame['losses']++;
         } else {
             // TIE
             winner = null;
+            bjGame['draws']++;
         }
     }
     showResult(winner);
@@ -136,4 +146,11 @@ function showResult(winner){
     }
     document.querySelector("#bj-result").textContent = message;
     document.querySelector("#bj-result").style.color = messageColor;
+    updateTable();
+}
+
+function updateTable(){
+    document.querySelector("#wins").textContent = bjGame['wins'];
+    document.querySelector("#losses").textContent = bjGame['losses'];
+    document.querySelector("#draws").textContent = bjGame['draws'];
 }
