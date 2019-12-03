@@ -1,5 +1,5 @@
 document.querySelector('#bj-hit-btn').addEventListener('click', bjHit);
-document.querySelector('#bj-stand-btn').addEventListener('click', bjBotHit);
+document.querySelector('#bj-stand-btn').addEventListener('click', bjStand);
 document.querySelector('#bj-deal-btn').addEventListener('click', bjDeal);
 
 let bjGame = {
@@ -9,18 +9,33 @@ let bjGame = {
     "cardsMap": {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10":10, "J": 10, "Q": 10, "K": 10, "A": [1, 11]},
 }
 const hitSound = new Audio("../sounds/swish.m4a");
+const winSound = new Audio("../sounds/cash.mp3");
+const lossSound = new Audio("../sounds/aww.mp3");
 hitSound.volume = 0.1;
+winSound.volume = 0.1;
+lossSound.volume = 0.1;
 
 function bjHit(){
     let card = randomCard();
     showCard("player", card);
     updateScore("player", card);
+    if (bjGame['player']['score'] > 21) {
+        showResult("bot");
+    }
 }
 
-function bjBotHit(){
-    let card = randomCard();
-    showCard("bot", card);
-    updateScore("bot", card);
+function bjStand(){
+    if (bjGame['player']['score'] > 0){ // do anything only if the player has already played
+        if (bjGame['player']['score'] <= 21){
+            // bot plays if it has a lower score than the player
+            while (bjGame['bot']['score'] <= bjGame['player']['score']){
+                let card = randomCard();
+                showCard("bot", card);
+                updateScore("bot", card);
+            }
+        }
+        computeWinner();
+    }
 }
 
 function bjDeal(){
@@ -76,4 +91,49 @@ function showScore(activePlayer){
             `${activePlayer.charAt(0).toUpperCase() + activePlayer.slice(1)}: ${bjGame[activePlayer]['score']}`;
             document.querySelector(`#${bjGame[activePlayer]['scoreSpan']}`).style.color = "white";
     }
+}
+
+function computeWinner(){
+    let winner;
+    if (bjGame['player']['score'] <= 21){
+        if (bjGame['player']['score'] > bjGame['bot']['score'] || bjGame['bot']['score'] > 21){
+            // Player win
+            winner = 'player';
+
+        } else if (bjGame['player']['score'] < bjGame['bot']['score']){
+            // Player lose
+            winner = 'bot'
+        } else {
+            // TIE
+            winner = null;
+        }
+    } else {
+        // You bust, does the computer too?
+        if (bjGame['bot']['score'] <= 21){
+            // Player lose
+            winner = "bot";
+        } else {
+            // TIE
+            winner = null;
+        }
+    }
+    showResult(winner);
+}
+
+function showResult(winner){
+    let message, messageColor;
+    if (winner == 'player') {
+        message = "You won!";
+        messageColor = "green";
+        winSound.play();
+    } else if (winner=="bot") {
+        message = "You lost!";
+        messageColor = "red";
+        lossSound.play();
+    } else {
+        message = "You drew";
+        messageColor = "black";
+    }
+    document.querySelector("#bj-result").textContent = message;
+    document.querySelector("#bj-result").style.color = messageColor;
 }
