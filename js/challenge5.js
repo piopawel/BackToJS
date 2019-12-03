@@ -30,7 +30,7 @@ function bjHit(){
     }
 }
 
-function bjStand(){
+async function bjStand(){
     if (bjGame['player']['score'] > 0){ // do anything only if the player has already played
         if (bjGame['player']['score'] <= 21){
             // bot plays if it has a lower score than the player
@@ -38,6 +38,7 @@ function bjStand(){
                 let card = randomCard();
                 showCard("bot", card);
                 updateScore("bot", card);
+                await sleep(500);
             }
         }
         computeWinner();
@@ -45,20 +46,24 @@ function bjStand(){
 }
 
 function bjDeal(){
-    let playerImages = document.querySelector("#player-box").querySelectorAll("img");
-    let botImages = document.querySelector("#bot-box").querySelectorAll("img");
-    for (let i=0; i<playerImages.length; i++){
-        playerImages[i].remove();
+    if (bjGame['player']['score'] > 0 && bjGame['bot']['score'] || bjGame['player']['score'] > 21){
+        // TODO: it should not be like this - I can click the "deal" while the bot is playing and then it crashes
+        // there should be a state - finished
+        let playerImages = document.querySelector("#player-box").querySelectorAll("img");
+        let botImages = document.querySelector("#bot-box").querySelectorAll("img");
+        for (let i=0; i<playerImages.length; i++){
+            playerImages[i].remove();
+        }
+        for (let i=0; i<botImages.length; i++){
+            botImages[i].remove();
+        }
+        bjGame['player']['score'] = 0;
+        bjGame['bot']['score'] = 0;
+        showScore('player');
+        showScore('bot');
+        document.querySelector("#bj-result").textContent = "Let's play!";
+        document.querySelector("#bj-result").style.color = "black";
     }
-    for (let i=0; i<botImages.length; i++){
-        botImages[i].remove();
-    }
-    bjGame['player']['score'] = 0;
-    bjGame['bot']['score'] = 0;
-    showScore('player');
-    showScore('bot');
-    document.querySelector("#bj-result").textContent = "Let's play!";
-    document.querySelector("#bj-result").style.color = "black";
 }
 
 function showCard(activePlayer, card){
@@ -155,4 +160,8 @@ function updateTable(){
     document.querySelector("#wins").textContent = bjGame['wins'];
     document.querySelector("#losses").textContent = bjGame['losses'];
     document.querySelector("#draws").textContent = bjGame['draws'];
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
