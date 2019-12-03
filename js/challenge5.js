@@ -57,6 +57,8 @@ function bjDeal(){
     bjGame['bot']['score'] = 0;
     showScore('player');
     showScore('bot');
+    document.querySelector("#bj-result").textContent = "Let's play!";
+    document.querySelector("#bj-result").style.color = "black";
 }
 
 function showCard(activePlayer, card){
