@@ -10,6 +10,7 @@ let bjGame = {
     "wins": 0,
     "draws": 0,
     "losses": 0,
+    "gamestate": "player-start",
 }
 const hitSound = new Audio("../sounds/swish.m4a");
 const winSound = new Audio("../sounds/cash.mp3");
@@ -19,19 +20,22 @@ winSound.volume = 0.1;
 lossSound.volume = 0.1;
 
 function bjHit(){
-    if(bjGame['bot']['score'] == 0){ // only play when the Bot has not started yet
+    if(bjGame['gamestate'] == 'player-turn' || bjGame['gamestate'] == 'player-start'){ // only play when the Bot has not started yet
+        bjGame['gamestate'] = 'player-turn';
         let card = randomCard();
         showCard("player", card);
         updateScore("player", card);
         if (bjGame['player']['score'] > 21) {
-            // showResult("bot");
+            bjGame['gamestate'] = 'round-finished';
             computeWinner();
         }
     }
 }
 
 async function bjStand(){
-    if (bjGame['player']['score'] > 0){ // do anything only if the player has already played
+    if (bjGame['gamestate'] == 'player-turn'){ 
+        // do anything only if the player has already played
+        bjGame['gamestate'] = 'bot-turn';
         if (bjGame['player']['score'] <= 21){
             // bot plays if it has a lower score than the player
             while (bjGame['bot']['score'] <= bjGame['player']['score']){
@@ -43,12 +47,11 @@ async function bjStand(){
         }
         computeWinner();
     }
+    bjGame['gamestate'] = 'round-finished';
 }
 
 function bjDeal(){
-    if (bjGame['player']['score'] > 0 && bjGame['bot']['score'] || bjGame['player']['score'] > 21){
-        // TODO: it should not be like this - I can click the "deal" while the bot is playing and then it crashes
-        // there should be a state - finished
+    if (bjGame['gamestate'] == 'round-finished'){
         let playerImages = document.querySelector("#player-box").querySelectorAll("img");
         let botImages = document.querySelector("#bot-box").querySelectorAll("img");
         for (let i=0; i<playerImages.length; i++){
@@ -63,6 +66,7 @@ function bjDeal(){
         showScore('bot');
         document.querySelector("#bj-result").textContent = "Let's play!";
         document.querySelector("#bj-result").style.color = "black";
+        bjGame['gamestate'] = 'player-start';
     }
 }
 
